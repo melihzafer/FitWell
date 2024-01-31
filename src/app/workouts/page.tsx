@@ -19,7 +19,6 @@ const workoutsData = [
     category: "Strength",
     duration: "45 mins",
   },
-  // Add more workout data as needed
 ];
 
 const Workouts: React.FC = () => {

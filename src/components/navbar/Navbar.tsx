@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log("Searching for:", search);
-    // Add logic for handling the search (e.g., redirect to a search results page)
+    //logic
   };
 
   return (
