@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import "./home.css";
+import LoadingScreen from "../loading";
 export default function HomePage() {
   return (
     <>
