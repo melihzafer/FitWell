@@ -1,8 +1,9 @@
 // components/ProductCard.tsx
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 
 interface ProductCardProps {
-  imageUrl: string;
+  imageUrl: StaticImageData;
   title: string;
   description: string;
   price: number;
@@ -16,7 +17,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md">
-      <img src={imageUrl} alt={title} className="w-full h-32 object-cover" />
+      <Image src={imageUrl} alt={title} className="w-full h-75 object-cover" />
 
       <div className="p-4">
         <h3 className="text-xl font-bold mb-2">{title}</h3>

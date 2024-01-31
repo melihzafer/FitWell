@@ -1,8 +1,11 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const Navbar: React.FC = () => {
+  const pathname = usePathname();
+
   const [search, setSearch] = useState("");
 
   const handleSearch = (e) => {
@@ -20,34 +23,54 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-6 py-3 md:px-12 md:py-6">
         <div className="flex items-center justify-between">
           <div className="text-2xl font-bold text-white">
-            <Link href="/">FitWell</Link>
+            <Link href="/home">FitWell</Link>
           </div>
 
           <div className="hidden md:flex gap-8 items-center space-x-4">
-            <Link href="/shop">
+            {/* <Link href="/shop">
               <span className="text-white hover:text-gray-300 cursor-pointer">
                 Shop
               </span>
+            </Link> */}
+            <Link
+              href="/workouts"
+              className={`text-white hover:text-gray-300 cursor-pointer ${
+                pathname === "/workouts" ? "font-bold" : ""
+              }`}
+            >
+              Workouts
             </Link>
-            <Link href="/workouts">
-              <span className="text-white hover:text-gray-300 cursor-pointer">
-                Workouts
-              </span>
+            <Link
+              href="/supplements"
+              className={`text-white hover:text-gray-300 cursor-pointer ${
+                pathname === "/supplements" ? "font-bold" : ""
+              }`}
+            >
+              Supplements
             </Link>
-            <Link href="/supplements">
-              <span className="text-white hover:text-gray-300 cursor-pointer">
-                Supplements
-              </span>
+            <Link
+              href="/blog"
+              className={`text-white hover:text-gray-300 cursor-pointer ${
+                pathname === "/blog" ? "font-bold" : ""
+              }`}
+            >
+              Blog
             </Link>
-            <Link href="/about">
-              <span className="text-white hover:text-gray-300 cursor-pointer">
-                About Us
-              </span>
+            <Link
+              href="/about"
+              className={`text-white hover:text-gray-300 cursor-pointer ${
+                pathname === "/about" ? "font-bold" : ""
+              }`}
+            >
+              About us
             </Link>
-            <Link href="/contact">
-              <span className="text-white hover:text-gray-300 cursor-pointer">
-                Contact Us
-              </span>
+            <Link
+              href="/contact"
+              className={`text-white hover:text-gray-300 cursor-pointer ${
+                pathname === "/contact" ? "font-bold" : ""
+              }`}
+            >
+              Contact us
             </Link>
           </div>
 
