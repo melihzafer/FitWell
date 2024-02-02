@@ -14,6 +14,9 @@ const LoginForm = () => {
         loginData
       );
       const token = response.data.token;
+      const email = response.data.email;
+      localStorage.setItem("token", token);
+      localStorage.setItem("email", email);
       alert(`Login successful! Token: ${token}`);
     } catch (error) {
       console.error(error);

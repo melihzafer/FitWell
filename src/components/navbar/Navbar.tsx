@@ -1,12 +1,16 @@
 "use client";
+import axios from "axios";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
 
   const [search, setSearch] = useState("");
+  const [logged, setLogged] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -18,6 +22,19 @@ const Navbar: React.FC = () => {
     //logic
   };
 
+  //loggin check
+  const checkLoginStatus = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) setLogged(true);
+    } catch (error) {
+      console.error("User not logged in:", error);
+    }
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
   return (
     <nav className="bg-purple-900 shadow-md">
       <div className="container mx-auto px-6 py-3 md:px-12 md:py-6">
@@ -92,9 +109,11 @@ const Navbar: React.FC = () => {
               </Link>
               <Link
                 className="px-5 py-3 bg-white rounded-md hover:bg-purple-100 cursor-pointer"
-                href="/signin"
+                href={`    ${logged ? "/profile" : "/signin"}`}
               >
-                <span className="text-purple-950 font-bold">Sign In</span>
+                <span className="text-purple-950 font-bold">
+                  {logged ? localStorage.getItem("email") : "Sign In"}
+                </span>
               </Link>
             </div>
           </div>

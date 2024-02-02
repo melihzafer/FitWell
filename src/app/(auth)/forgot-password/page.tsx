@@ -1,28 +1,30 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
-const LoginForm = () => {
-  const handleForgotPassword = async (e) => {
-    e.preventDefault();
-    const email = prompt("Enter your email:");
-    if (email) {
-      try {
-        await axios.post("http://localhost:5000/auth/forgot-password", {
-          email,
-        });
-        alert("Password reset email sent");
-      } catch (error) {
-        console.error(error);
-      }
+const ForgotPasswordForm: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+
+  const handleForgotPassword = async () => {
+    try {
+      await axios.post("http://localhost:5000/auth/forgot-password", { email });
+      console.log("Email sent to backend");
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
     <div>
-      <button onClick={handleForgotPassword}>Forgot Password</button>
+      <input
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <button onClick={handleForgotPassword}>Reset Password</button>
     </div>
   );
 };
 
-export default LoginForm;
+export default ForgotPasswordForm;
