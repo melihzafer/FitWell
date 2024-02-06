@@ -1,13 +1,20 @@
-// pages/workouts/[page].tsx
-"use client"
-import Workouts from '../workouts'; // Import your main Workouts component
-import { useParams, usePathname } from 'next/navigation';
+// "use client"
+// import Workouts from '../page'; // Import your main Workouts component
+// import { useParams, usePathname, useSearchParams } from 'next/navigation';
 
-const Page = ({ params }) => {
-  const { page } = useParams() || { page: '1' }; // Provide a default value if query is undefined
-  console.log(params.workoutsPage)
+// const Page = () => {
+//   const { page } = useSearchParams() || { page: '1' }; // Provide a default value if query is undefined
+  
+//   return (
+//   <>
+//     <div>hey</div>
+//   <Workouts page={page} />;
+//   </>
+//   )
+// };
 
-  return <Workouts page={params.workoutsPage} />;
-};
+// export default Page;
 
-export default Page;
+
+
+// DON NEED FOR NOW

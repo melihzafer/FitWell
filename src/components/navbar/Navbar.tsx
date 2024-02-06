@@ -50,9 +50,9 @@ const Navbar: React.FC = () => {
               </span>
             </Link> */}
             <Link
-              href="/workouts/1"
+              href="/workouts"
               className={`text-white hover:text-gray-300 cursor-pointer ${
-                pathname === "/workouts/1" ? "font-bold" : ""
+                pathname === "/workouts" ? "font-bold" : ""
               }`}
             >
               Workouts

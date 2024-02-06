@@ -1,14 +1,13 @@
+// Assuming you have an axios instance or you can use axios directly
 import axios from 'axios';
 
-const fetchWorkouts = async () => {
+const fetchWorkouts = async (page) => {
   try {
-    const response = await axios.get('http://localhost:5000/workout/get');
-    const workoutsData = response.data;
-    console.log('Fetched workouts:', workoutsData);
-    return workoutsData;
+    const response = await axios.get(`http://localhost:5000/workout/get?page=${page}`);
+    return response.data;
   } catch (error) {
-    console.error('Error fetching workouts:', error);
-    throw error; // You can handle the error further or rethrow it as needed.
+    console.error(error);
+    throw error;
   }
 };
 
