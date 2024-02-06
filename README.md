@@ -13,6 +13,14 @@ pnpm dev
 # or
 bun dev
 ```
+![image](https://github.com/melihzafer/FitWell/assets/62754311/2c14786c-d8f3-4f16-afb0-9573dba347bc)
+
+![image](https://github.com/melihzafer/FitWell/assets/62754311/8b7af0e1-87b8-48b7-ae1f-705bb88babfd)
+
+![image](https://github.com/melihzafer/FitWell/assets/62754311/bcd804c2-e459-4cbe-ac44-7642d178662f)
+
+![image](https://github.com/melihzafer/FitWell/assets/62754311/455c4914-e323-4502-844e-eee9dc3a7dab)
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
