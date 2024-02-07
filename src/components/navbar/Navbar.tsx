@@ -42,13 +42,26 @@ const Navbar: React.FC = () => {
           <div className="text-2xl font-bold text-white">
             <Link href="/home">FitWell</Link>
           </div>
-
           <div className="hidden md:flex gap-8 items-center space-x-4">
-            {/* <Link href="/shop">
+            {/* Shop Dropdown */}
+            <div className="relative group">
               <span className="text-white hover:text-gray-300 cursor-pointer">
                 Shop
               </span>
-            </Link> */}
+              <ul className="absolute hidden bg-white text-purple-800 mt-2 py-2 px-4 rounded-md group-hover:block">
+                <li>
+                  <Link href="/shop/supplements">
+                    <span className="block px-4 py-2">Supplements</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/shop/workout-programs">
+                    <span className="block px-4 py-2">Workout Programs</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            
             <Link
               href="/workouts"
               className={`text-white hover:text-gray-300 cursor-pointer ${
@@ -56,14 +69,6 @@ const Navbar: React.FC = () => {
               }`}
             >
               Workouts
-            </Link>
-            <Link
-              href="/supplements"
-              className={`text-white hover:text-gray-300 cursor-pointer ${
-                pathname === "/supplements" ? "font-bold" : ""
-              }`}
-            >
-              Supplements
             </Link>
             <Link
               href="/blog"

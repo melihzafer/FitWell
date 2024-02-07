@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import fetchWorkouts from "@/server/api/WorkoutsApi/workouts";
-import WorkoutsCard from "@/components/workoutsCard/wrokoutsCard";
+import fetchSupplements from "@/server/api/SupplementsApi/supplements";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
+import SupplementsCard from "@/components/supplamentCard/supplementCard";
 
 const categories: string[] = [
   "Full Body",
@@ -15,7 +15,7 @@ const categories: string[] = [
 ];
 const itemsPerPage: number = 6;
 
-const Workouts = () => {
+const Supplements = () => {
   const wrk = [
     {
       title: "Burpees",
@@ -241,7 +241,7 @@ const Workouts = () => {
   // for (let i = 0; i < wrk.length; i++) {
   //   try {
      
-  //       axios.post("http://localhost:5000/workout/post", wrk[i]);
+  //       axios.post("http://localhost:5000/supplement/post", wrk[i]);
   //       console.log("success");
       
   //   } catch (error) {
@@ -255,32 +255,34 @@ const Workouts = () => {
   const page = pageSearch.get("page");
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchWorkouts(page);
-      setWorkoutsArray(data);
+      const data = await fetchSupplements(page);
+      setsupplementsArray(data);
     };
 
     fetchData();
   }, [page]);
   console.log(page);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [workoutsArray, setWorkoutsArray] = useState<any[]>([]);
+  const [supplementsArray, setsupplementsArray] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(
     page ? parseInt(page, 10) : 1
   );
 
-  const filteredWorkouts = selectedCategory
-    ? workoutsArray.filter((workout) => workout.category === selectedCategory)
-    : workoutsArray;
+
+
+  const filteredsupplements = selectedCategory
+    ? supplementsArray.filter((supplement) => supplement.category === selectedCategory)
+    : supplementsArray;
 
   // Calculate the total number of pages
-  const totalPages: number = Math.ceil(workoutsArray.length / itemsPerPage);
+  const totalPages: number = Math.ceil(supplementsArray.length / itemsPerPage);
 
   // Calculate the starting and ending indexes for the current page
   const startIndex: number = (currentPage - 1) * itemsPerPage;
   const endIndex: number = startIndex + itemsPerPage;
 
-  // Get the workouts to display on the current page
-  const workoutsToDisplay = filteredWorkouts.slice(startIndex, endIndex);
+  // Get the supplements to display on the current page
+  const supplementsToDisplay = filteredsupplements.slice(startIndex, endIndex);
 
   return (
     <div className="flex container mx-auto">
@@ -310,7 +312,7 @@ const Workouts = () => {
               onClick={() => {
                 setSelectedCategory(category);
                 setCurrentPage(1);
-                router.push("/workouts?page=1");
+                router.push("/supplements?page=1");
               }}
             >
               {category}
@@ -322,30 +324,30 @@ const Workouts = () => {
       <div className="w-5/6 p-4">
         <div className="mb-4">
           <h1 className="text-3xl font-bold mb-2 text-purple-800">
-            All Workouts
+            All supplements
           </h1>
           <span className="text-sm text-purple-600">
-            Showing {itemsPerPage} of {workoutsArray.length}
+            Showing {itemsPerPage} of {supplementsArray.length}
           </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 mb-10">
-          {workoutsToDisplay.map((workout, index) => (
-            <WorkoutsCard key={index} workout={workout} />
+          {supplementsToDisplay.map((supplement, index) => (
+            <SupplementsCard key={index} Supplement={supplement} />
           ))}
         </div>
 
         {/* Pagination */}
         <div className="mt-4">
           {currentPage > 1 && (
-            <Link href={`/workouts/?page=${currentPage - 1}`}>
+            <Link href={`/supplements/?page=${currentPage - 1}`}>
               <span className="mx-1 p-2 cursor-pointer text-purple-600">
                 Previous
               </span>
             </Link>
           )}
 
-          <Link href={`/workouts/?page=1`}>
+          <Link href={`/supplements/?page=1`}>
             <span
               className={`mx-1 p-2 cursor-pointer ${
                 currentPage === 1
@@ -358,7 +360,7 @@ const Workouts = () => {
           </Link>
 
           {totalPages > 1 && (
-            <Link href={`/workouts/?page=2`}>
+            <Link href={`/supplements/?page=2`}>
               <span
                 className={`mx-1 p-2 cursor-pointer ${
                   currentPage === 2
@@ -372,7 +374,7 @@ const Workouts = () => {
           )}
 
           {currentPage < totalPages && (
-            <Link href={`/workouts/?page=${currentPage + 1}`}>
+            <Link href={`/supplements/?page=${currentPage + 1}`}>
               <span className="mx-1 p-2 cursor-pointer text-purple-600">
                 Next
               </span>
@@ -384,4 +386,4 @@ const Workouts = () => {
   );
 };
 
-export default Workouts;
+export default Supplements;
